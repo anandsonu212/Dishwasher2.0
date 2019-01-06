@@ -16,14 +16,20 @@ public class ShoppingTaskManager : MonoBehaviour
 
     public static int newhighscore;
 
-  
-
-    public static int totalquestionstoask = 1;     //Change this value to set how many questions you have to ask in the game.
+        public static int totalquestionstoask = 1;     //Change this value to set how many questions you have to ask in the game.
 
 
     [SerializeField]
-        private Text showscore;
-    
+        private Text showscore111;
+
+    public Animator item1;
+    public Animator item2;
+    public Animator item3;
+    public Animator item4;
+    public Animator item5;
+    public Animator item6;
+
+
     [SerializeField]
     private Text counter;
 
@@ -103,28 +109,57 @@ public class ShoppingTaskManager : MonoBehaviour
 
     // section 2. this section is to show if the user's selected choice is correct or wrong
 
-
-
-
-
     //section 4. Displays results of game
 
     void stopgame()
     {
-
         end = 1;
         //factText.text = "END OF QUESTIONS";
         int score = correctanswers * 10;
-        showscore.text = "Your Score: " + score.ToString();
+        //showscore.text = "Your Score: " + score.ToString();
         //answers.SetTrigger("mcqover");
 
         Description = "I just scored " + correctanswers + " in QuizUp Android Game. CAN YOU BEAT ME?";
         Debug.Log("Stopped game");
         sethighscores();
-
-
     }
 
+    void setScore()
+    {
+        int score = PlayerPrefs.GetInt("YourScore");
+        Debug.Log("--------------------Current Score-------------------" + score);
+        PlayerPrefs.SetInt("YourScore", (score + 2));
+    }
+    public void shoppingItemClicked(string itemName)
+    {
+        Debug.Log("Item Added");
+        if (itemName == "item1")
+        {
+            setScore();
+            item1.SetTrigger("item1"); 
+        }else if (itemName == "item2")
+        {
+            setScore();
+            item2.SetTrigger("item2");
+        }else if (itemName == "item3")
+        {
+            setScore();
+            item3.SetTrigger("item3");
+        } else if (itemName == "item4")
+        {
+            setScore();
+            item4.SetTrigger("item4");
+        }else if (itemName == "item5")
+        {
+            setScore();
+            item5.SetTrigger("item5");
+        }
+        else if (itemName == "item6")
+        {
+            setScore();
+            item6.SetTrigger("item6");
+        }
+    }
 
     void sethighscores()
     {

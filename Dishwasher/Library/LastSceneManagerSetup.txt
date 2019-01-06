@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/QuizUp Assets/Resources/scenes/shopping/ShoppingTask.unity
+- path: Assets/QuizUp Assets/Resources/scenes/dishwashing/DishwashingPreview.unity
   isLoaded: 1
   isActive: 1

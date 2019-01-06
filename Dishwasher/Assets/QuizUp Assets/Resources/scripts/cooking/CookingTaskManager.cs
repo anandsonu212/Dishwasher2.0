@@ -77,30 +77,40 @@ public class CookingTaskManager : MonoBehaviour
 
     public void cauliFlowerClicked() {
         Debug.Log("CauliflowerClicked");
+        PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         cauliflowerAnimation.SetTrigger("cauliFly");
+        
     }
     public void capcicumClicked()
     {
         Debug.Log("capcicumClicked");
+        PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         capcicumAnimation.SetTrigger("capcicumFly");
+        
     }
 
     public void broccoliClicked()
     {
         Debug.Log("broccoliClicked");
+        PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         broccoliAnimation.SetTrigger("broccoliFly");
+        
     }
 
     public void fruitsClicked()
     {
         Debug.Log("fruitsClicked");
+        PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         fruitsAnimation.SetTrigger("fruitsFly");
+        
     }
 
     public void tomatoClicked()
     {
         Debug.Log("tomatoClicked");
+        PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         tomatoAnimation.SetTrigger("tomatoFly");
+        
     }
 
     void Update()
@@ -125,6 +135,7 @@ public class CookingTaskManager : MonoBehaviour
             //totalquestionstoask = totalquestionstoask - 1;
         }
     }
+    
 
     //sequnce-----> 1)cooking  2)cleaning  3)dishwashing  4)shopping
     public void cookingDone()
@@ -147,10 +158,6 @@ public class CookingTaskManager : MonoBehaviour
     //end of section1.
 
     // section 2. this section is to show if the user's selected choice is correct or wrong
-
-
-
-
 
     //section 4. Displays results of game
 

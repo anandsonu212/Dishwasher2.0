@@ -76,7 +76,7 @@ public class CleaningTaskManager : MonoBehaviour
     public void OnClicked(string buttonName)
     {
         Debug.Log("Clicked" + buttonName);
-
+        PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore")+2));
         dirtbutton = GameObject.Find(buttonName);
         dirtbutton.SetActive(false);
 
