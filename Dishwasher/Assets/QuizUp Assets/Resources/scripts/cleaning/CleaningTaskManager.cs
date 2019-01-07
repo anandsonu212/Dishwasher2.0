@@ -25,8 +25,9 @@ public class CleaningTaskManager : MonoBehaviour
         private Text showscore;
 
 
+    [SerializeField]
+    private Text score;
 
-    
     [SerializeField]
     private Text counter;
 
@@ -69,7 +70,7 @@ public class CleaningTaskManager : MonoBehaviour
 
     void Start()
     {
-                
+        score.text = "Score:" + PlayerPrefs.GetInt("YourScore").ToString();
     }
 
 
@@ -79,11 +80,11 @@ public class CleaningTaskManager : MonoBehaviour
         PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore")+2));
         dirtbutton = GameObject.Find(buttonName);
         dirtbutton.SetActive(false);
+        score.text = "Score:" + PlayerPrefs.GetInt("YourScore").ToString();
+        //        print(button.name);
 
-//        print(button.name);
-        
-     //   button.interactable=false;
-        
+        //   button.interactable=false;
+
     }
 
     void Update()

@@ -28,9 +28,11 @@ public class CookingTaskManager : MonoBehaviour
     [SerializeField]
         private Text showscore;
 
+    [SerializeField]
+    private Text score;
 
 
-    
+
     [SerializeField]
     private Text counter;
 
@@ -72,21 +74,22 @@ public class CookingTaskManager : MonoBehaviour
 
     void Start()
     {
-       // cauliflowerAnimation = GetComponent<Animator>();
+        // cauliflowerAnimation = GetComponent<Animator>();
+        score.text = "Score:" + PlayerPrefs.GetInt("YourScore").ToString();
     }
 
     public void cauliFlowerClicked() {
         Debug.Log("CauliflowerClicked");
         PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         cauliflowerAnimation.SetTrigger("cauliFly");
-        
+        updatescore();
     }
     public void capcicumClicked()
     {
         Debug.Log("capcicumClicked");
         PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         capcicumAnimation.SetTrigger("capcicumFly");
-        
+        updatescore();
     }
 
     public void broccoliClicked()
@@ -94,7 +97,7 @@ public class CookingTaskManager : MonoBehaviour
         Debug.Log("broccoliClicked");
         PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         broccoliAnimation.SetTrigger("broccoliFly");
-        
+        updatescore();
     }
 
     public void fruitsClicked()
@@ -102,7 +105,7 @@ public class CookingTaskManager : MonoBehaviour
         Debug.Log("fruitsClicked");
         PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         fruitsAnimation.SetTrigger("fruitsFly");
-        
+        updatescore();
     }
 
     public void tomatoClicked()
@@ -110,9 +113,11 @@ public class CookingTaskManager : MonoBehaviour
         Debug.Log("tomatoClicked");
         PlayerPrefs.SetInt("YourScore", (PlayerPrefs.GetInt("YourScore") + 2));
         tomatoAnimation.SetTrigger("tomatoFly");
-        
+        updatescore();
     }
-
+    public void updatescore() {
+        score.text = "Score:" + PlayerPrefs.GetInt("YourScore").ToString();
+    }
     void Update()
     {
         if (end == 1)

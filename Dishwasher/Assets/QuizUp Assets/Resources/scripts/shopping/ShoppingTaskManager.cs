@@ -22,13 +22,27 @@ public class ShoppingTaskManager : MonoBehaviour
     [SerializeField]
         private Text showscore111;
 
-    public Animator item1;
-    public Animator item2;
-    public Animator item3;
-    public Animator item4;
-    public Animator item5;
-    public Animator item6;
 
+
+
+
+
+    
+    public Animator scotchbrite;
+    public Animator galascrub;
+    public Animator oats;
+    public Animator nutrichoiceoats;
+    public Animator oreo;
+    public Animator exo;
+    public Animator parleg;
+    public Animator whitesugar;
+    public Animator sugarfree;
+    public Animator tonedmilk;
+    public Animator brownsugar;
+    public Animator fullcreammilk;
+    public Animator anestlemilk;
+    public Animator lays;
+    public Animator redbull;
 
     [SerializeField]
     private Text counter;
@@ -36,7 +50,8 @@ public class ShoppingTaskManager : MonoBehaviour
     [SerializeField]
     public float timeforeachquestion;
 
-  
+    [SerializeField]
+    private Text score;
 
     private static int correctanswers = 0;
     private static int wronganswers = 0;
@@ -71,7 +86,7 @@ public class ShoppingTaskManager : MonoBehaviour
 
     void Start()
     {
-                
+        score.text = "Score:" + PlayerPrefs.GetInt("YourScore").ToString();
     }
 
     
@@ -133,32 +148,78 @@ public class ShoppingTaskManager : MonoBehaviour
     public void shoppingItemClicked(string itemName)
     {
         Debug.Log("Item Added");
-        if (itemName == "item1")
+        if (itemName == "scotchbrite")
         {
             setScore();
-            item1.SetTrigger("item1"); 
-        }else if (itemName == "item2")
+            scotchbrite.SetTrigger("scotchbrite"); 
+        }else if (itemName == "galascrub")
         {
             setScore();
-            item2.SetTrigger("item2");
-        }else if (itemName == "item3")
+            galascrub.SetTrigger("galascrub");
+        }else if (itemName == "exo")
         {
             setScore();
-            item3.SetTrigger("item3");
-        } else if (itemName == "item4")
+            exo.SetTrigger("exo");
+        } else if (itemName == "parleg")
         {
             setScore();
-            item4.SetTrigger("item4");
-        }else if (itemName == "item5")
+            parleg.SetTrigger("parleg");
+        }else if (itemName == "oreo")
         {
             setScore();
-            item5.SetTrigger("item5");
+            oreo.SetTrigger("oreo");
         }
-        else if (itemName == "item6")
+        else if (itemName == "nutrichoiceoats")
         {
             setScore();
-            item6.SetTrigger("item6");
+            nutrichoiceoats.SetTrigger("nutrichoiceoats");
         }
+        else if (itemName == "sugarfree")
+        {
+            setScore();
+            sugarfree.SetTrigger("sugarfree");
+        }
+        else if (itemName == "whitesugar")
+        {
+            setScore();
+            whitesugar.SetTrigger("whitesugar");
+        }
+        else if (itemName == "tonedmilk")
+        {
+            setScore();
+            tonedmilk.SetTrigger("tonedmilk");
+        }
+        else if (itemName == "brownsugar")
+        {
+            setScore();
+            brownsugar.SetTrigger("brownsugar");
+        }
+        else if (itemName == "fullcreammilk")
+        {
+            setScore();
+            fullcreammilk.SetTrigger("fullcreammilk");
+        }
+        else if (itemName == "anestlemilk")
+        {
+            setScore();
+            anestlemilk.SetTrigger("anestlemilk");
+        }
+        else if (itemName == "oats")
+        {
+            setScore();
+            oats.SetTrigger("oats");
+        }
+        else if (itemName == "lays")
+        {
+            setScore();
+            lays.SetTrigger("lays");
+        }
+        else if (itemName == "redbull")
+        {
+            setScore();
+            redbull.SetTrigger("redbull");
+        }
+        score.text = "Score:" + PlayerPrefs.GetInt("YourScore").ToString();
     }
 
     void sethighscores()
