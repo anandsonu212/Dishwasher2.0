@@ -180,7 +180,7 @@ public class ShoppingGameManager : MonoBehaviour
 
     public void option1selected()
     {
-        Savecsv(totalquestionstoask, 1);
+       // Savecsv(totalquestionstoask, 1);
         if (currentQuestion.atrue)
         {
             setScore();
@@ -205,7 +205,7 @@ public class ShoppingGameManager : MonoBehaviour
 
     public void option2selected()
     {
-        Savecsv(totalquestionstoask, 2);
+      //  Savecsv(totalquestionstoask, 2);
         if (currentQuestion.btrue)
         {
             Debug.Log("Option2");
@@ -230,7 +230,7 @@ public class ShoppingGameManager : MonoBehaviour
 
     public void option3selected()
     {
-        Savecsv(totalquestionstoask, 3);
+       // Savecsv(totalquestionstoask, 3);
         if (currentQuestion.ctrue)
         {
             setScore();
@@ -256,7 +256,7 @@ public class ShoppingGameManager : MonoBehaviour
 
     public void option4selected()
     {
-        Savecsv(totalquestionstoask, 4);
+     //   Savecsv(totalquestionstoask, 4);
         if (currentQuestion.dtrue)
         {
 
@@ -539,32 +539,24 @@ public class ShoppingGameManager : MonoBehaviour
     }
     public void Savecsv(int q_number, int option_selected)
     {
-       /* WebClient client = new WebClient();
-        client.Credentials = new NetworkCredential("", "");
-        byte[] lop = client.UploadFile("http://maxi-xlri.com/play/MCQResponses.csv", "MCQResponses.csv");
-        //  byte[] lop = client.UploadFile("C:\\Users\\Sonu Anand\\Documents\\MAXI\\MCQResponses.csv", "/trial");
-        Debug.Log(lop);
-        Debug.Log("file uploaded");
-        string filePath = @".\trial\MCQResponses.csv"; */
+        Debug.Log("Entered SaveCsv");
+        /*WebClient client = new WebClient();
+        client.Credentials = new NetworkCredential("maxixlri", "Ankesh!@!2016");
+        client.UploadFile("http://maxi-xlri.com/play/MCQResponse.csv", "MCQResponses.csv");*/
+        string filePath = @".\\MCQResponse.csv";
         string delimiter = ",";
+
         string[][] output = new string[][]{
              new string[]{ PlayerPrefs.GetString("User"),PlayerPrefs.GetString("Category"), q_number.ToString(), option_selected.ToString()}
                      };
-       // Debug.Log(option_selected.ToString());
-       
         int length = output.GetLength(0);
-        Debug.Log(length);
         StringBuilder sb = new StringBuilder();
         for (int index = 0; index < length; index++)
             sb.AppendLine(string.Join(delimiter, output[index]));
-        string x = sb.ToString();
-        Debug.Log(x);
-       // StartCoroutine(sendResponsestoCSV(x));
-       // SceneManager.LoadScene("Close prompt");
-       // File.AppendAllText(filePath, sb.ToString());//
-        Debug.Log("Data written blah blah");
 
-        
+        File.AppendAllText(filePath, sb.ToString());
+        Debug.Log("Data written to");
+        Debug.Log(filePath);
     }
 
     IEnumerator sendResponsestoCSV(string sb)

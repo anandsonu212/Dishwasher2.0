@@ -25,7 +25,7 @@ public class MCQGameManager : MonoBehaviour
     public Animator answers;
 
 
-    public static int totalquestionstoask = 3;     //Change this value to set how many questions you have to ask in the game.
+    public static int totalquestionstoask = 10;     //Change this value to set how many questions you have to ask in the game.
 
 
     [SerializeField]
@@ -102,6 +102,10 @@ public class MCQGameManager : MonoBehaviour
 
     void Start()
     {
+
+
+
+
         if (unansweredQuestions == null || unansweredQuestions.Count == 0)
         {
 
@@ -115,11 +119,8 @@ public class MCQGameManager : MonoBehaviour
 
         if (totalquestionstoask == 0)
         {
-            Debug.Log("Unanwered count" + totalquestionstoask);
 
-           
-                SceneManager.LoadScene("cookingTask");
-            //stopgame();
+            stopgame();
 
         }
     }
@@ -284,19 +285,7 @@ public class MCQGameManager : MonoBehaviour
 
     IEnumerator TransitionToNextQuestion()
     {
-        Debug.Log("Unanwered count" + unansweredQuestions.Count);
 
-        if (unansweredQuestions.Count == 0)
-        {
-
-            SceneManager.LoadScene("cookingTask");
-        }
-        else
-        {
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-        }
         unansweredQuestions.Remove(currentQuestion);
         totalquestionstoask = totalquestionstoask - 1;
         yield return new WaitForSeconds(timebetweenquestions);
@@ -327,7 +316,6 @@ public class MCQGameManager : MonoBehaviour
         answers.SetTrigger("mcqover");
 
         Description = "I just scored " + correctanswers + " in QuizUp Android Game. CAN YOU BEAT ME?";
-        Debug.Log("Stopped game");
         sethighscores();
 
 
@@ -534,54 +522,24 @@ public class MCQGameManager : MonoBehaviour
     }
     public void Savecsv(int q_number, int option_selected)
     {
-       /* WebClient client = new WebClient();
-        client.Credentials = new NetworkCredential("", "");
-        byte[] lop = client.UploadFile("http://maxi-xlri.com/play/MCQResponses.csv", "MCQResponses.csv");
-        //  byte[] lop = client.UploadFile("C:\\Users\\Sonu Anand\\Documents\\MAXI\\MCQResponses.csv", "/trial");
-        Debug.Log(lop);
-        Debug.Log("file uploaded");
-        string filePath = @".\trial\MCQResponses.csv"; */
+        Debug.Log("Entered SaveCsv");
+        /*WebClient client = new WebClient();
+        client.Credentials = new NetworkCredential("maxixlri", "Ankesh!@!2016");
+        client.UploadFile("http://maxi-xlri.com/play/MCQResponse.csv", "MCQResponses.csv");*/
+        string filePath = @".\\MCQResponse.csv";
         string delimiter = ",";
+
         string[][] output = new string[][]{
              new string[]{ PlayerPrefs.GetString("User"),PlayerPrefs.GetString("Category"), q_number.ToString(), option_selected.ToString()}
                      };
-       // Debug.Log(option_selected.ToString());
-       
         int length = output.GetLength(0);
-        Debug.Log(length);
         StringBuilder sb = new StringBuilder();
         for (int index = 0; index < length; index++)
             sb.AppendLine(string.Join(delimiter, output[index]));
-        string x = sb.ToString();
-        Debug.Log(x);
-       // StartCoroutine(sendResponsestoCSV(x));
-       // SceneManager.LoadScene("Close prompt");
-       // File.AppendAllText(filePath, sb.ToString());//
-        Debug.Log("Data written blah blah");
 
-        
-    }
-
-    IEnumerator sendResponsestoCSV(string sb)
-    {
-        bool success = true;
-        WWWForm form = new WWWForm();
-        form.AddField("playerdata", sb);
-        Debug.Log(sb);
-        WWW send = new WWW("http://localhost/trial/php.php", form);
-        yield return send;
-        Debug.Log(send.text);
-        if (send.error!=null)
-        {
-            success = false;
-            Debug.Log(send.error);
-        }
-        else
-        {
-            Debug.Log(send.text);
-            success = true;
-        }
-      
+        File.AppendAllText(filePath, sb.ToString());
+        Debug.Log("Data written to");
+        Debug.Log(filePath);
     }
 
 }

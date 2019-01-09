@@ -16,7 +16,10 @@ public class DishwasherTaskManager : MonoBehaviour
 
     public static int newhighscore;
 
-  
+    public Animator hand;
+    public Animator handle;
+    public Animator scrub;
+    public Animator metalscrub;
 
     public static int totalquestionstoask = 1;     //Change this value to set how many questions you have to ask in the game.
 
@@ -308,6 +311,25 @@ public class DishwasherTaskManager : MonoBehaviour
         wronganswers = 0;
        
     }
+    public void itemClicked(string itemName)
+    {
+       // Savecsv(itemName);
+        if (itemName == "hand")
+        {
+            hand.SetTrigger("hand");
+        }
+        else if (itemName == "handle") {
+            handle.SetTrigger("handle");
+        }
+        else if (itemName == "scrub")
+        {
+            scrub.SetTrigger("scrub");
+        }
+        else if (itemName == "metalscrub")
+        {
+            metalscrub.SetTrigger("metalscrub");
+        }
+    }
 
     public void sharescoreonfb()
     {
@@ -333,34 +355,26 @@ public class DishwasherTaskManager : MonoBehaviour
 
 
     }
-    public void Savecsv(int q_number, int option_selected)
+    public void Savecsv(string option_selected)
     {
-       /* WebClient client = new WebClient();
-        client.Credentials = new NetworkCredential("", "");
-        byte[] lop = client.UploadFile("http://maxi-xlri.com/play/MCQResponses.csv", "MCQResponses.csv");
-        //  byte[] lop = client.UploadFile("C:\\Users\\Sonu Anand\\Documents\\MAXI\\MCQResponses.csv", "/trial");
-        Debug.Log(lop);
-        Debug.Log("file uploaded");
-        string filePath = @".\trial\MCQResponses.csv"; */
+        Debug.Log("Entered SaveCsv");
+        /*WebClient client = new WebClient();
+        client.Credentials = new NetworkCredential("maxixlri", "Ankesh!@!2016");
+        client.UploadFile("http://maxi-xlri.com/play/MCQResponse.csv", "MCQResponses.csv");*/
+        string filePath = @".\\MCQResponse.csv";
         string delimiter = ",";
+
         string[][] output = new string[][]{
-             new string[]{ PlayerPrefs.GetString("User"),PlayerPrefs.GetString("Category"), q_number.ToString(), option_selected.ToString()}
+             new string[]{ PlayerPrefs.GetString("User"),PlayerPrefs.GetString("Category"),  option_selected.ToString()}
                      };
-       // Debug.Log(option_selected.ToString());
-       
         int length = output.GetLength(0);
-        Debug.Log(length);
         StringBuilder sb = new StringBuilder();
         for (int index = 0; index < length; index++)
             sb.AppendLine(string.Join(delimiter, output[index]));
-        string x = sb.ToString();
-        Debug.Log(x);
-       // StartCoroutine(sendResponsestoCSV(x));
-       // SceneManager.LoadScene("Close prompt");
-       // File.AppendAllText(filePath, sb.ToString());//
-        Debug.Log("Data written blah blah");
 
-        
+        File.AppendAllText(filePath, sb.ToString());
+        Debug.Log("Data written to");
+        Debug.Log(filePath);
     }
 
     IEnumerator sendResponsestoCSV(string sb)
